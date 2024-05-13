@@ -2,8 +2,9 @@ package tech.aelson.algorithms.sort.merge_sort
 
 import tech.aelson.algorithms.model.Grade
 
+
 object MergeSort {
-    fun execute(firstArray: Array<Grade>, secondArray: Array<Grade>): Array<Grade> {
+    fun mergeTwoArrays(firstArray: Array<Grade>, secondArray: Array<Grade>): Array<Grade> {
         val total = firstArray.size + secondArray.size
         val merged = Array(total) { Grade("", 0.0) }
         var currentOfFirstArray = 0
@@ -40,5 +41,48 @@ object MergeSort {
             currentOfMerged++
         }
         return merged
+    }
+
+    fun sortOneArray(array: Array<Grade>, start: Int, middle: Int, end: Int): Array<Grade> {
+        val total = array.size
+        val sorted = Array(total - start) { Grade("", 0.0) }
+        var sortedIndex = 0
+        var firstPartIndex = start
+        var secondPartIndex = middle
+        while (firstPartIndex < middle && secondPartIndex < end) {
+            println("Comparing " + array[firstPartIndex].studentName + " (" + array[firstPartIndex].result + ") with " + array[secondPartIndex].studentName + " (" + array[secondPartIndex].result + ")")
+
+            if (array[firstPartIndex].result < array[secondPartIndex].result) {
+                println("-> Inserting " + array[firstPartIndex].studentName + " (" + array[firstPartIndex].result + ") on the position " + sortedIndex)
+                sorted[sortedIndex] = array[firstPartIndex]
+                firstPartIndex++
+            } else {
+                println("-> Inserting " + array[secondPartIndex].studentName + " (" + array[secondPartIndex].result + ") on the position " + sortedIndex)
+                sorted[sortedIndex] = array[secondPartIndex]
+                secondPartIndex++
+            }
+            println("------------------------------------")
+            sortedIndex++
+        }
+        while (firstPartIndex < middle) {
+            println("-> Inserting " + array[firstPartIndex].studentName + " (" + array[firstPartIndex].result + ") on the position " + sortedIndex + " because it is left over from the first part of the array")
+            sorted[sortedIndex] = array[firstPartIndex]
+            firstPartIndex++
+            sortedIndex++
+        }
+        while (secondPartIndex < end) {
+            println("-> Inserting " + array[secondPartIndex].studentName + " (" + array[secondPartIndex].result + ") on the position " + sortedIndex + " because it is left over from the second part of the array")
+            sorted[sortedIndex] = array[secondPartIndex]
+            secondPartIndex++
+            sortedIndex++
+        }
+        if (start > 0) {
+            println("Rebuilding the original array keeping the initial object(s) not ordered (because the start is greater then 0)")
+            for (indexOfMerged in 0 until sortedIndex) {
+                println("-> Inserting " + sorted[indexOfMerged].studentName + " (" + sorted[indexOfMerged].result + ") on the position " + indexOfMerged)
+                array[start + indexOfMerged] = sorted[indexOfMerged]
+            }
+        }
+        return array
     }
 }
