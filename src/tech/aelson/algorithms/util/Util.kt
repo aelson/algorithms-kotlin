@@ -1,6 +1,7 @@
 package tech.aelson.algorithms.util
 
 import src.tech.aelson.algorithms.model.Product
+import tech.aelson.algorithms.model.Grade
 
 object Util {
     fun swap(products: Array<Product>, first: Int, second: Int) {
@@ -16,14 +17,14 @@ object Util {
         println("------------------------------------")
     }
 
-    fun printProductsArray(arrayTitle: String?, products: Array<Product>) {
+    fun printProductsArray(arrayTitle: String, products: Array<Product>) {
         println(arrayTitle)
         for (product: Product in products) {
             println(product.name + " costs " + product.price)
         }
     }
 
-    fun printGradesArray(arrayTitle: String?, grades: Array<Grade?>) {
+    fun printGradesArray(arrayTitle: String, grades: Array<Grade>) {
         println(arrayTitle)
         for (grade: Grade in grades) {
             println(grade.studentName + " " + grade.result)
