@@ -16,10 +16,17 @@ object Util {
         println("------------------------------------")
     }
 
-    fun printArray(arrayTitle: String?, products: Array<Product>) {
+    fun printProductsArray(arrayTitle: String?, products: Array<Product>) {
         println(arrayTitle)
         for (product: Product in products) {
             println(product.name + " costs " + product.price)
+        }
+    }
+
+    fun printGradesArray(arrayTitle: String?, grades: Array<Grade?>) {
+        println(arrayTitle)
+        for (grade: Grade in grades) {
+            println(grade.studentName + " " + grade.result)
         }
     }
 

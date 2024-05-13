@@ -1,15 +1,16 @@
 package tech.aelson.algorithms.sort.selection_sort
 
 import tech.aelson.algorithms.sort.selection_sort.SelectionSort.execute
-import tech.aelson.algorithms.util.Util
+import tech.aelson.algorithms.util.Util.printProductsArray
+import tech.aelson.algorithms.util.Util.unsortedProducts
 
 object SelectionSortTester {
     @JvmStatic
     fun main(args: Array<String>) {
-        val products = Util.unsortedProducts
-        Util.printArray("Original array: ", products)
+        val products = unsortedProducts
+        printProductsArray("Original array: ", products)
 
         execute(products, products.size)
-        Util.printArray("Sorted array: ", products)
+        printProductsArray("Sorted array: ", products)
     }
 }
