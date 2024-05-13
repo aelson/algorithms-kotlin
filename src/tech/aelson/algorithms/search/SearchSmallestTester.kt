@@ -3,7 +3,7 @@ package src.tech.aelson.algorithms.search
 import src.tech.aelson.algorithms.model.Product
 import src.tech.aelson.algorithms.search.SearchSmallest.findSmallest
 
-object TestSmallestPrice {
+object SearchSmallestTester {
     @JvmStatic
     fun main(args: Array<String>) {
         val products = arrayOf(
@@ -16,6 +16,6 @@ object TestSmallestPrice {
 
         val smallest = findSmallest(products, 0, 4)
         println(smallest)
-        println(("The car " + products[smallest].name).toString() + " costs " + products[smallest].price)
+        println("The car " + products[smallest].name + " costs " + products[smallest].price)
     }
 }
