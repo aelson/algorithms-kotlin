@@ -1,7 +1,7 @@
-package src.tech.aelson.algorithms.search
+package tech.aelson.algorithms.search
 
 import src.tech.aelson.algorithms.model.Product
-import src.tech.aelson.algorithms.search.SearchSmallest.findSmallest
+import tech.aelson.algorithms.search.SearchSmallest.execute
 
 object SearchSmallestTester {
     @JvmStatic
@@ -14,7 +14,7 @@ object SearchSmallestTester {
             Product("Audi Q5", 45000.0)
         )
 
-        val smallest = findSmallest(products, 0, 4)
+        val smallest = execute(products, 0, 4)
         println(smallest)
         println("The car " + products[smallest].name + " costs " + products[smallest].price)
     }
