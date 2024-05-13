@@ -4,6 +4,16 @@ import tech.aelson.algorithms.model.Grade
 
 
 object MergeSort {
+    fun mergeSort(grades: Array<Grade>, start: Int, end: Int) {
+        val numberOfElements = end - start
+        if (numberOfElements > 1) {
+            val middle = (start + end) / 2
+            mergeSort(grades, start, middle)
+            mergeSort(grades, middle, end)
+            sortOneArrayWithTwoOrderedHalf(grades, start, middle, end)
+        }
+    }
+
     fun mergeTwoArrays(firstArray: Array<Grade>, secondArray: Array<Grade>): Array<Grade> {
         val total = firstArray.size + secondArray.size
         val merged = Array(total) { Grade("", 0.0) }
@@ -33,7 +43,7 @@ object MergeSort {
         return merged
     }
 
-    fun sortOneArray(array: Array<Grade>, start: Int, middle: Int, end: Int): Array<Grade> {
+    private fun sortOneArrayWithTwoOrderedHalf(array: Array<Grade>, start: Int, middle: Int, end: Int) {
         val total = array.size
         val sorted = Array(total - start) { Grade("", 0.0) }
         var sortedIndex = 0
@@ -56,10 +66,7 @@ object MergeSort {
         }
         sortedIndex = addRemainingElementsToEndOfArray(array, middle, firstPartIndex, sorted, sortedIndex)
         addRemainingElementsToEndOfArray(array, end, secondPartIndex, sorted, sortedIndex)
-        if (start + end < array.size) {
-            rebuildArray(array, start, sortedIndex, sorted)
-        }
-        return array
+        rebuildArray(array, start, sortedIndex, sorted)
     }
 
     private fun addRemainingElementsToEndOfArray(
