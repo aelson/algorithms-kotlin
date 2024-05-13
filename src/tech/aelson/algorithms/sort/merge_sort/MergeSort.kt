@@ -2,7 +2,6 @@ package tech.aelson.algorithms.sort.merge_sort
 
 import tech.aelson.algorithms.model.Grade
 
-
 object MergeSort {
     fun mergeSort(grades: Array<Grade>, start: Int, end: Int) {
         val numberOfElements = end - start

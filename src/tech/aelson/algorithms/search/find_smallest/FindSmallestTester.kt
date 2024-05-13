@@ -1,9 +1,9 @@
-package tech.aelson.algorithms.search
+package tech.aelson.algorithms.search.find_smallest
 
 import src.tech.aelson.algorithms.model.Product
-import tech.aelson.algorithms.search.SearchSmallest.execute
+import tech.aelson.algorithms.search.find_smallest.FindSmallest.execute
 
-object SearchSmallestTester {
+object FindSmallestTester {
     @JvmStatic
     fun main(args: Array<String>) {
         val products = arrayOf(
