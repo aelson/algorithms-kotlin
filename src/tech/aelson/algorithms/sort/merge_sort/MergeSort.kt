@@ -28,18 +28,8 @@ object MergeSort {
             println("------------------------------------")
             currentOfMerged++
         }
-        while (currentOfFirstArray < firstArray.size) {
-            println("-> Inserting " + firstArray[currentOfFirstArray].studentName + " (" + firstArray[currentOfFirstArray].result + ") on the position " + currentOfMerged + " because it is left over from the first array")
-            merged[currentOfMerged] = firstArray[currentOfFirstArray]
-            currentOfFirstArray++
-            currentOfMerged++
-        }
-        while (currentOfSecondArray < secondArray.size) {
-            println("-> Inserting " + secondArray[currentOfSecondArray].studentName + " (" + secondArray[currentOfSecondArray].result + ") on the position " + currentOfMerged + " because it is left over from the second array")
-            merged[currentOfMerged] = secondArray[currentOfSecondArray]
-            currentOfSecondArray++
-            currentOfMerged++
-        }
+        currentOfMerged = addRemainingElementsToEndOfArray(firstArray, firstArray.size, currentOfFirstArray, merged, currentOfMerged)
+        addRemainingElementsToEndOfArray(secondArray, secondArray.size, currentOfSecondArray, merged, currentOfMerged)
         return merged
     }
 
@@ -64,25 +54,37 @@ object MergeSort {
             println("------------------------------------")
             sortedIndex++
         }
-        while (firstPartIndex < middle) {
-            println("-> Inserting " + array[firstPartIndex].studentName + " (" + array[firstPartIndex].result + ") on the position " + sortedIndex + " because it is left over from the first part of the array")
-            sorted[sortedIndex] = array[firstPartIndex]
-            firstPartIndex++
-            sortedIndex++
-        }
-        while (secondPartIndex < end) {
-            println("-> Inserting " + array[secondPartIndex].studentName + " (" + array[secondPartIndex].result + ") on the position " + sortedIndex + " because it is left over from the second part of the array")
-            sorted[sortedIndex] = array[secondPartIndex]
-            secondPartIndex++
-            sortedIndex++
-        }
-        if (start > 0) {
-            println("Rebuilding the original array keeping the initial object(s) not ordered (because the start is greater then 0)")
-            for (indexOfMerged in 0 until sortedIndex) {
-                println("-> Inserting " + sorted[indexOfMerged].studentName + " (" + sorted[indexOfMerged].result + ") on the position " + indexOfMerged)
-                array[start + indexOfMerged] = sorted[indexOfMerged]
-            }
+        sortedIndex = addRemainingElementsToEndOfArray(array, middle, firstPartIndex, sorted, sortedIndex)
+        addRemainingElementsToEndOfArray(array, end, secondPartIndex, sorted, sortedIndex)
+        if (start + end < array.size) {
+            rebuildArray(array, start, sortedIndex, sorted)
         }
         return array
+    }
+
+    private fun addRemainingElementsToEndOfArray(
+        array: Array<Grade>,
+        arrayEnd: Int,
+        arrayIndex: Int,
+        merged: Array<Grade>,
+        mergedArrayIndex: Int
+    ): Int {
+        var currentIndex = arrayIndex
+        var currentMergedIndex = mergedArrayIndex
+        while (currentIndex < arrayEnd) {
+            println("-> Inserting " + array[currentIndex].studentName + " (" + array[currentIndex].result + ") on the position " + currentMergedIndex + " because it is left over from the first array")
+            merged[currentMergedIndex] = array[currentIndex]
+            currentIndex++
+            currentMergedIndex++
+        }
+        return currentMergedIndex
+    }
+
+    private fun rebuildArray(array: Array<Grade>, start: Int, sortedIndex: Int, sorted: Array<Grade>) {
+        println("Rebuilding the original array")
+        for (indexOfMerged in 0 until sortedIndex) {
+            println("-> Inserting " + sorted[indexOfMerged].studentName + " (" + sorted[indexOfMerged].result + ") on the position " + indexOfMerged)
+            array[start + indexOfMerged] = sorted[indexOfMerged]
+        }
     }
 }
