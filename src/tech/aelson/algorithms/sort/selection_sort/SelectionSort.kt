@@ -9,7 +9,7 @@ object SelectionSort {
         for (current in 0 until numberOfElements - 1) {
             println("I am in the element $current")
             val smallest: Int = SearchSmallest.execute(products, current, products.size - 1)
-            Util.swap(products, current, smallest);
+            Util.swap(products, current, smallest)
         }
     }
 }
