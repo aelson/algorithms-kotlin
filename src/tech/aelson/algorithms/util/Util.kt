@@ -3,16 +3,17 @@ package tech.aelson.algorithms.util
 import src.tech.aelson.algorithms.model.Product
 import tech.aelson.algorithms.model.Grade
 
+
 object Util {
-    fun swap(products: Array<Product>, first: Int, second: Int) {
+    fun <T> swap(array: Array<T>, first: Int, second: Int) {
         println("<-> Swapping element $first with $second")
 
-        val (firstProduct, secondProduct) = products[first] to products[second]
+        val (firstElement, secondElement) = array[first] to array[second]
 
-        println("<-> Swapping product " + firstProduct.name + " with " + secondProduct.name)
+        println("<-> Swapping object $firstElement with $secondElement")
 
-        products[first] = secondProduct
-        products[second] = firstProduct
+        array[first] = secondElement
+        array[second] = firstElement
 
         println("------------------------------------")
     }
@@ -39,4 +40,18 @@ object Util {
             Product("Honda Civic", 30000.0),
             Product("Tesla Model 3", 50000.0),
         )
+
+    fun getUnsortedGrades(specialGrade: Grade): Array<Grade> {
+        return arrayOf(
+            Grade("andre", 4.0),
+            Grade("carlos", 8.5),
+            Grade("ana", 10.0),
+            Grade("jonas", 3.0),
+            Grade("juliana", 6.7),
+            Grade("lucia", 9.3),
+            Grade("paulo", 9.0),
+            Grade("mariana", 5.0),
+            specialGrade,
+        )
+    }
 }
