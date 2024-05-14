@@ -28,10 +28,10 @@ object MergeSortOneArrayTester {
             Grade("jonas", 3.0),
             Grade("guilherme", 7.0),
         )
-        //Util.printGradesArray("Grades array: ", sortedHalfOfGrades);
+        //Util.printGradesArray("Grades array: ", sortedHalfOfGrades)
         Util.printGradesArray("Grades array: ", unsortedGrades)
 
-        //MergeSort.sortOneArrayWithTwoOrderedHalf(sortedHalfOfGrades, 0, 4, 8);
+        //MergeSort.sortOneArrayWithTwoOrderedHalf(sortedHalfOfGrades, 0, 4, 8)
         MergeSort.mergeSort(unsortedGrades, 0, unsortedGrades.size)
         Util.printGradesArray("Sorted array: ", unsortedGrades)
     }
